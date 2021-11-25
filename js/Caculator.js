@@ -1,8 +1,13 @@
 function Caculator(selector) {
 
+    // Store value of M+, M- function
     class Registor {
 
         constructor() {
+            this.clear();
+        }
+
+        clear() {
             this._enable = false;
             this._value = 0;
         }
@@ -24,6 +29,7 @@ function Caculator(selector) {
         }
     }
     
+    // Remember last operation
     class Memory {
         #_firstNum;
         #_secondNum;
@@ -33,12 +39,7 @@ function Caculator(selector) {
         #_isEnteringOperator;
     
         constructor() {
-            this.#_firstNum = null;
-            this.#_secondNum = null;
-            this.#_operator = null;
-            this.#_caculated = false;
-            this.#_isEnteredSecondNum = false;
-            this.#_isEnteringOperator = false;
+            this.clear();
         }
     
         clear() {
@@ -99,14 +100,12 @@ function Caculator(selector) {
         }
     }
     
+    // Store input value and process value to display
     class DisplayMemory {
         _maxChar = 16;
 
         constructor() {
-            this._value = '0';
-            this._sign = false;
-            this._fPoint = false;
-            this._isEntering = false;
+            this.clear();
         }
 
         clear() {
@@ -272,30 +271,32 @@ function Caculator(selector) {
         const valueContainer = screen.querySelector('.value');
         const fontSizeOffset = valueContainer.style.getPropertyValue('font-size').replace('px', '');
 
+        // Enter number, floating point buttons
         const inputButtons = {};
         Array.from(Caculator.querySelectorAll('.btn--value')).forEach(button => {
             const buttonType = button.dataset.function;
             inputButtons[buttonType] = button;
         })
 
+        // Enter operation buttons
         const operatorButtons = {};
         Array.from(Caculator.querySelectorAll('.btn--operator')).forEach(button => {
             const buttonType = button.dataset.function;
             operatorButtons[buttonType] = button;
         })
 
+        // MC, M+, M-, MR buttons
         const specialFunctionButtons = {};
         Array.from(Caculator.querySelectorAll('.btn--special')).forEach(button => {
             const buttonType = button.dataset.function;
             specialFunctionButtons[buttonType] = button;
         })
 
-        // inputButtons
         for (const index in inputButtons) {
             inputButtons[index].onclick = (e) => {
 
                 displayMemory.push(e.target.dataset.function);
-
+                
                 if (memory.caculated && memory.operator) {
                     memory.caculated = false;
                 }
@@ -308,7 +309,6 @@ function Caculator(selector) {
             }
         }
 
-        // operatorButtons
         for (const index in operatorButtons) {
             operatorButtons[index].onclick = (e) => {
 
@@ -339,7 +339,6 @@ function Caculator(selector) {
             }
         }
 
-        // specialFunctionButtons
         for (const index in specialFunctionButtons) {
             specialFunctionButtons[index].onclick = (e) => {
 
@@ -359,14 +358,14 @@ function Caculator(selector) {
             }
         }
 
+        // Handler M+, M- function
         function specialFunctionHandler(operator, registor, memory, displayMemory) {
             switch (operator) {
                 case 'mc':
                     if (!registor.enable) {
                         return;
                     }
-                    registor.enable = false;
-                    registor.value = 0;
+                    registor.clear();
                     break;
                 case 'mr':
                     if (!registor.enable) {
@@ -391,6 +390,7 @@ function Caculator(selector) {
             }
         }
 
+        // Handler operator
         function operatorHandler(operator, memory, displayMemory) {
 
             if (operator == '=') {
@@ -436,6 +436,7 @@ function Caculator(selector) {
             }
         }
 
+        // Calculateting function
         function caculate(operator, firstNum, secondNum) {
 
             firstNum = firstNum == '' ? 0 : firstNum;
@@ -463,6 +464,7 @@ function Caculator(selector) {
             }
         }
 
+        // Function for handling value to display on screen
         function displayProcess(screen, valueContainer, registor, memory, displayMemory) {
             
             const modDisplay = screen.children[0];
@@ -494,6 +496,7 @@ function Caculator(selector) {
             resizeText(screen, valueContainer);
         }
 
+        // Resize text if the text is overflow
         function resizeText(screen, valueContainer)
         {   
             const screenWidth = screen.clientWidth;
