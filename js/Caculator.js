@@ -296,7 +296,7 @@ function Caculator(selector) {
             inputButtons[index].onclick = (e) => {
 
                 displayMemory.push(e.target.dataset.function);
-                
+
                 if (memory.caculated && memory.operator) {
                     memory.caculated = false;
                 }
@@ -480,7 +480,7 @@ function Caculator(selector) {
 
             let expressionText;
             if (memory.caculated) {
-                expressionText = `${memory.firstNum} ${memory.operator} ${memory.secondNum} =`;
+                expressionText = `${memory.firstNum} ${memory.operator} ${memory.secondNum < 0 ? `(${memory.secondNum})` : memory.secondNum} =`;
             }
             else if (memory.isEnteringOperator) {
                 expressionText = `${memory.firstNum} ${memory.operator}`;
