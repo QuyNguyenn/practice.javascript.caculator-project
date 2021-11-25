@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="app">
+        <div class="calculator-wrapper">
+            <div class="screen">
+                <div class="mod">M</div>
+                <div class="expression">100 + 2 =</div>
+                <div class="value" style="font-size: 60px;">102</div>
+            </div>
+            <div class="buttons">
+                <div class="btn btn--special b-1-1 disable" data-function="mc">MC</div>
+                <div class="btn btn--special b-1-1" data-function="m+">M+</div>
+                <div class="btn btn--special b-1-1" data-function="m-">M-</div>
+                <div class="btn btn--special b-1-1 disable" data-function="mr">MR</div>
+                <div class="btn btn--operator b-1-1" data-function="clear">AC</div>
+                <div class="btn btn--operator b-1-1" data-function="sign">+/-</div>
+                <div class="btn btn--operator b-1-1" data-function="/">&#247;</div>
+                <div class="btn btn--operator b-1-1" data-function="x">x</div>
+                <div class="btn btn--value b-1-1" data-function="7">7</div>
+                <div class="btn btn--value b-1-1" data-function="8">8</div>
+                <div class="btn btn--value b-1-1" data-function="9">9</div>
+                <div class="btn btn--operator b-1-1" data-function="-">-</div>
+                <div class="btn btn--value b-1-1" data-function="4">4</div>
+                <div class="btn btn--value b-1-1" data-function="5">5</div>
+                <div class="btn btn--value b-1-1" data-function="6">6</div>
+                <div class="btn btn--operator b-1-1" data-function="+">+</div>
+                <div class="btn btn--value b-1-1" data-function="1">1</div>
+                <div class="btn btn--value b-1-1" data-function="2">2</div>
+                <div class="btn btn--value b-1-1" data-function="3">3</div>
+                <div class="btn btn--operator b-1-1" data-function="delete">&#9664;</div>
+                <div class="btn btn--value b-1-1" data-function="0">0</div>
+                <div class="btn btn--value b-1-1" data-function=".">.</div>
+                <div class="btn btn--operator btn--calculate b-1-2" data-function="=">=</div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/Caculator.js"></script>
+    <script>
+        Caculator('.calculator-wrapper');
+    </script>
+</body>
+</html>
