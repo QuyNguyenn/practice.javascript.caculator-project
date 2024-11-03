@@ -1,2 +1,6 @@
-# JavaScript_Caculator_Project
+# practice.javascript.caculator-project
+
+
+## Description
+
 Progarm a caculator using JavaScript
